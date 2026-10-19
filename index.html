@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="ml">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>സ്മാർട്ട് പേഴ്സണാലിറ്റി അനലൈസർ 2026</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manjari:wght@400;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Manjari', sans-serif;
+    }
+
+    body {
+      background: linear-gradient(135deg, #0f172a, #1e1b4b, #311042);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+      color: #fff;
+    }
+
+    .container {
+      background: rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 24px;
+      padding: 30px 24px;
+      width: 100%;
+      max-width: 480px;
+      text-align: center;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+      position: relative;
+    }
+
+    .badge {
+      display: inline-block;
+      background: rgba(56, 189, 248, 0.2);
+      color: #38bdf8;
+      border: 1px solid rgba(56, 189, 248, 0.4);
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      margin-bottom: 18px;
+      font-weight: 700;
+    }
+
+    h1 {
+      font-size: 1.6rem;
+      margin-bottom: 12px;
+      line-height: 1.4;
+    }
+
+    p {
+      color: #cbd5e1;
+      font-size: 1rem;
+      margin-bottom: 24px;
+      line-height: 1.5;
+    }
+
+    .input-box {
+      width: 100%;
+      padding: 14px 18px;
+      border-radius: 14px;
+      border: 2px solid rgba(255, 255, 255, 0.2);
+      background: rgba(15, 23, 42, 0.6);
+      color: #fff;
+      font-size: 1.1rem;
+      margin-bottom: 20px;
+      outline: none;
+      transition: 0.3s;
+    }
+
+    .input-box:focus {
+      border-color: #38bdf8;
+      box-shadow: 0 0 15px rgba(56, 189, 248, 0.3);
+    }
+
+    .btn {
+      width: 100%;
+      padding: 14px 20px;
+      border-radius: 14px;
+      border: none;
+      font-size: 1.1rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      background: linear-gradient(135deg, #38bdf8, #6366f1);
+      color: #fff;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(99, 102, 241, 0.4);
+    }
+
+    .btn-group {
+      display: flex;
+      gap: 15px;
+      position: relative;
+      min-height: 60px;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .btn-yes {
+      background: linear-gradient(135deg, #10b981, #059669);
+      flex: 1;
+    }
+
+    .btn-no {
+      background: linear-gradient(135deg, #ef4444, #dc2626);
+      flex: 1;
+      position: relative;
+      transition: transform 0.15s ease-out;
+    }
+
+    .cert-box {
+      background: #fff;
+      color: #1e293b;
+      border-radius: 20px;
+      padding: 24px;
+      border: 4px dashed #f59e0b;
+      box-shadow: 0 10px 30px rgba(245, 158, 11, 0.2);
+      margin-bottom: 20px;
+      position: relative;
+    }
+
+    .cert-title {
+      color: #dc2626;
+      font-size: 1.4rem;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+
+    .user-name {
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: #4f46e5;
+      text-decoration: underline;
+      margin: 10px 0;
+    }
+
+    .victim-img {
+      width: 180px;
+      height: 180px;
+      object-fit: cover;
+      border-radius: 50%;
+      border: 4px solid #f59e0b;
+      margin: 15px auto;
+      display: block;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+      animation: bounce 1.5s infinite;
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.06); }
+    }
+
+    .footer-credits {
+      margin-top: 24px;
+      font-size: 0.95rem;
+      color: #94a3b8;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+    }
+
+    .footer-credits span {
+      color: #f43f5e;
+      font-weight: 700;
+    }
+
+    .step { display: none; }
+    .active { display: block; }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    
+    <!-- Step 1: തുടക്കം -->
+    <div id="step-1" class="step active">
+      <div class="badge">🧠 AI ബുദ്ധി പരിശോധന 2026</div>
+      <h1>നിങ്ങളുടെ ഐക്യു (IQ) എത്രയാണെന്ന് അറിയണോ?</h1>
+      <p>കൃത്യമായ ഫലം ലഭിക്കാൻ നിങ്ങളുടെ യഥാർത്ഥ പേര് നൽകി ടെസ്റ്റ് ആരംഭിക്കുക.</p>
+      <input type="text" id="username" class="input-box" placeholder="നിങ്ങളുടെ പേര് ഇവിടെ എഴുതുക..." />
+      <button class="btn" onclick="startQuiz()">തുടങ്ങാം 🚀</button>
+    </div>
+
+    <!-- Step 2: തമാശ ചോദ്യം -->
+    <div id="step-2" class="step">
+      <div class="badge">ചോദ്യം 1 / 1</div>
+      <h1 id="question-text">നിങ്ങൾ ഒരു മഹാ മണ്ടനാണോ? 🤔</h1>
+      <p>സത്യസന്ധമായി മാത്രം ഉത്തരം നൽകുക:</p>
+      <div class="btn-group">
+        <button class="btn btn-yes" onclick="finishQuiz()">അതെ, ഞാൻ മണ്ടനാണ്! 🙋‍♂️</button>
+        <button id="no-btn" class="btn btn-no" onmouseover="escapeBtn()" onclick="escapeBtn()">അല്ല! 🙅‍♂️</button>
+      </div>
+    </div>
+
+    <!-- Step 3: സ്കാനിംഗ് ഡ്രാമ -->
+    <div id="step-3" class="step">
+      <div class="badge">പരിശോധിക്കുന്നു... ⏳</div>
+      <h1>ഡാറ്റ വിശകലനം ചെയ്യുന്നു...</h1>
+      <p style="font-size: 2.2rem; margin: 20px 0;">🧠 ➡️ 📉 ➡️ 🤪</p>
+      <p id="scan-status" style="color: #38bdf8; font-weight: 700;">തലച്ചോറ് തിരയുന്നു...</p>
+    </div>
+
+    <!-- Step 4: ക്ലൈമാക്സ് മണ്ടൻ സർട്ടിഫിക്കറ്റ് വിത്ത് ഫ്രണ്ടിന്റെ ഫോട്ടോ -->
+    <div id="step-4" class="step">
+      <div class="cert-box">
+        <div style="font-size: 2.5rem;">🏆</div>
+        <div class="cert-title">ഔദ്യോഗിക മണ്ടൻ സർട്ടിഫിക്കറ്റ്</div>
+        <p style="color: #64748b; font-size: 0.9rem; margin-bottom: 5px;">ഈ സർട്ടിഫിക്കറ്റ് അഭിമാനപൂർവ്വം നൽകുന്നത്:</p>
+        <div class="user-name" id="cert-name">സുഹൃത്ത്</div>
+        
+        <!-- കൂട്ടുകാരന്റെ ഫോട്ടോ ലിങ്ക് -->
+        <img src="https://i.ibb.co/JFgTKPwf/image.jpg" onerror="this.src='https://ibb.co/JFgTKPwf';" alt="Victim Photo" class="victim-img" />
+
+        <p style="font-weight: 700; color: #b91c1c; font-size: 1.1rem; margin-top: 10px;">
+          "2026-ലെ ഏറ്റവും വലിയ മഹാ മണ്ടനായി ഇദ്ദേഹത്തെ തിരഞ്ഞെടുത്തിരിക്കുന്നു!" 🤣
+        </p>
+      </div>
+
+      <button class="btn" style="background: #25D366; margin-top: 10px;" onclick="shareOnWhatsApp()">
+        കൂട്ടുകാരെ പറ്റിക്കാൻ അയക്കൂ (WhatsApp) 📲
+      </button>
+    </div>
+
+    <!-- Shameel-ന്റെ പേര് അടങ്ങിയ ഫൂട്ടർ -->
+    <div class="footer-credits">
+      Crafted with 😜 by <span>Shameel</span>
+    </div>
+
+  </div>
+
+  <script>
+    let victimName = "സുഹൃത്ത്";
+    let dodgeCount = 0;
+
+    function playBeep(freq, type, duration) {
+      try {
+        const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        osc.type = type;
+        osc.frequency.value = freq;
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+        osc.start();
+        gain.gain.exponentialRampToValueAtTime(0.00001, audioCtx.currentTime + duration);
+        osc.stop(audioCtx.currentTime + duration);
+      } catch (e) {}
+    }
+
+    function startQuiz() {
+      const nameInput = document.getElementById('username').value.trim();
+      if (!nameInput) {
+        alert("ദയവായി നിങ്ങളുടെ പേര് നൽകുക!");
+        return;
+      }
+      victimName = nameInput;
+      playBeep(440, 'sine', 0.2);
+      document.getElementById('step-1').classList.remove('active');
+      document.getElementById('step-2').classList.add('active');
+    }
+
+    function escapeBtn() {
+      dodgeCount++;
+      playBeep(700 + (dodgeCount * 60), 'triangle', 0.1);
+      const noBtn = document.getElementById('no-btn');
+      const randomX = (Math.random() - 0.5) * 220;
+      const randomY = (Math.random() - 0.5) * 160;
+      noBtn.style.transform = `translate(${randomX}px, ${randomY}px)`;
+
+      if (dodgeCount > 3) {
+        noBtn.innerText = "തൊടാൻ പറ്റില്ലേ! 😜";
+      }
+    }
+
+    function finishQuiz() {
+      playBeep(250, 'sawtooth', 0.4);
+      document.getElementById('step-2').classList.remove('active');
+      document.getElementById('step-3').classList.add('active');
+
+      const statuses = [
+        "തലച്ചോറ് സ്കാൻ ചെയ്യുന്നു...",
+        "Error 404: Brain Not Found! ❌",
+        "റിസൾട്ട് തയ്യാറാക്കുന്നു..."
+      ];
+
+      let idx = 0;
+      const interval = setInterval(() => {
+        idx++;
+        if (idx < statuses.length) {
+          document.getElementById('scan-status').innerText = statuses[idx];
+          playBeep(400 + (idx * 150), 'sine', 0.2);
+        } else {
+          clearInterval(interval);
+          showCertificate();
+        }
+      }, 1000);
+    }
+
+    function showCertificate() {
+      document.getElementById('step-3').classList.remove('active');
+      document.getElementById('step-4').classList.add('active');
+      document.getElementById('cert-name').innerText = victimName;
+
+      confetti({
+        particleCount: 100,
+        spread: 70,
+        origin: { y: 0.6 }
+      });
+    }
+
+    function shareOnWhatsApp() {
+      const text = `ഡാ, ഈ AI ടെസ്റ്റിൽ നിന്റെ IQ എത്രയാണെന്ന് നോക്ക്! ദാ ലിങ്ക്: ${window.location.href}`;
+      window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(text)}`, '_blank');
+    }
+  </script>
+</body>
+</html>
