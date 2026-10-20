@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>സ്മാർട്ട് പേഴ്സണാലിറ്റി അനലൈസർ 2026</title>
+  <title>സ്മാർട്ട് AI ബ്രെയിൻ അനലൈസർ 2026</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Manjari:wght@400;700&display=swap" rel="stylesheet">
@@ -61,8 +61,8 @@
 
     p {
       color: #cbd5e1;
-      font-size: 1rem;
-      margin-bottom: 24px;
+      font-size: 0.95rem;
+      margin-bottom: 20px;
       line-height: 1.5;
     }
 
@@ -73,8 +73,8 @@
       border: 2px solid rgba(255, 255, 255, 0.2);
       background: rgba(15, 23, 42, 0.6);
       color: #fff;
-      font-size: 1.1rem;
-      margin-bottom: 20px;
+      font-size: 1.05rem;
+      margin-bottom: 16px;
       outline: none;
       transition: 0.3s;
     }
@@ -82,6 +82,32 @@
     .input-box:focus {
       border-color: #38bdf8;
       box-shadow: 0 0 15px rgba(56, 189, 248, 0.3);
+    }
+
+    /* ഫോട്ടോ അപ്‌ലോഡ് / ക്യാമറ ബോക്സ് */
+    .selfie-card {
+      border: 2px dashed rgba(56, 189, 248, 0.4);
+      border-radius: 16px;
+      padding: 16px;
+      background: rgba(15, 23, 42, 0.4);
+      margin-bottom: 20px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .selfie-card:hover {
+      border-color: #38bdf8;
+      background: rgba(15, 23, 42, 0.7);
+    }
+
+    .preview-img {
+      width: 90px;
+      height: 90px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin: 10px auto;
+      border: 3px solid #38bdf8;
+      display: none;
     }
 
     .btn {
@@ -143,7 +169,7 @@
       color: #dc2626;
       font-size: 1.3rem;
       font-weight: 700;
-      margin-bottom: 8px;
+      margin-bottom: 6px;
     }
 
     .user-name {
@@ -151,7 +177,7 @@
       font-weight: 700;
       color: #4f46e5;
       text-decoration: underline;
-      margin: 10px 0;
+      margin: 8px 0;
     }
 
     .victim-img {
@@ -190,13 +216,25 @@
 
   <div class="container">
     
-    <!-- പേര് ചോദിക്കുന്ന ആദ്യ പേജ് -->
+    <!-- പേരും സെൽഫിയും ചോദിക്കുന്ന ആദ്യ പേജ് -->
     <div id="step-0" class="step active">
-      <div class="badge">🧠 AI ബുദ്ധി പരിശോധന 2026</div>
-      <h1>നിങ്ങളുടെ ഐക്യു (IQ) എത്രയാണെന്ന് അറിയണോ?</h1>
-      <p>കൃത്യമായ ഫലം ലഭിക്കാൻ നിങ്ങളുടെ യഥാർത്ഥ പേര് നൽകി ടെസ്റ്റ് ആരംഭിക്കുക.</p>
+      <div class="badge">🧠 AI ബ്രെയിൻ & ഫേസ് സ്കാനർ 2026</div>
+      <h1>നിങ്ങളുടെ ബുദ്ധി എത്രത്തോളമുണ്ട്?</h1>
+      <p>കൃത്യമായ AI പരിശോധനയ്ക്കായി പേരും ഫ്രണ്ട് ക്യാമറ സെൽഫിയും നൽകുക.</p>
+      
       <input type="text" id="username" class="input-box" placeholder="നിങ്ങളുടെ പേര് ഇവിടെ എഴുതുക..." />
-      <button class="btn btn-primary" onclick="startQuiz()">തുടങ്ങാം 🚀</button>
+
+      <label class="selfie-card" for="selfie-input">
+        <div id="upload-hint">
+          <div style="font-size: 2rem;">📸</div>
+          <div style="font-size: 0.95rem; font-weight: 700; color: #38bdf8;">ഒരു സെൽഫി എടുക്കുക / അപ്‌ലോഡ് ചെയ്യുക</div>
+          <div style="font-size: 0.75rem; color: #94a3b8;">(AI മുഖം സ്കാൻ ചെയ്യാൻ ആവശ്യമാണ്)</div>
+        </div>
+        <img id="preview" class="preview-img" alt="Selfie Preview" />
+        <input type="file" id="selfie-input" accept="image/*" capture="user" style="display: none;" onchange="handleSelfie(event)" />
+      </label>
+
+      <button class="btn btn-primary" onclick="startQuiz()">പരിശോധന തുടങ്ങാം 🚀</button>
     </div>
 
     <!-- ചോദ്യം 1 -->
@@ -227,7 +265,6 @@
       <h1>നിങ്ങൾ ഒരു മഹാ മണ്ടനാണോ? 🧐</h1>
       <p>സത്യസന്ധമായി ഉത്തരം നൽകുക:</p>
       
-      <!-- ഈ ബട്ടൺ ഗ്രൂപ്പിലെ ഓർഡർ തനിയെ മാറും -->
       <div class="btn-group" id="swap-group">
         <button id="btn-yes" class="btn btn-yes" onclick="finishQuiz()">അതെ, ഞാൻ മണ്ടനാണ്! 🙋‍♂️</button>
         <button id="btn-no" class="btn btn-no" onmouseover="swapButtons()" ontouchstart="swapButtons()" onclick="swapButtons()">അല്ല! 🙅‍♂️</button>
@@ -236,10 +273,10 @@
 
     <!-- സ്കാനിംഗ് ഡ്രാമ -->
     <div id="step-4" class="step">
-      <div class="badge">പരിശോധിക്കുന്നു... ⏳</div>
+      <div class="badge">AI പരിശോധന നടക്കുന്നു... ⏳</div>
       <h1>ഡാറ്റ വിശകലനം ചെയ്യുന്നു...</h1>
       <p style="font-size: 2.2rem; margin: 20px 0;">🧠 ➡️ 📉 ➡️ 🤪</p>
-      <p id="scan-status" style="color: #38bdf8; font-weight: 700;">തലച്ചോറ് സ്കാൻ ചെയ്യുന്നു...</p>
+      <p id="scan-status" style="color: #38bdf8; font-weight: 700;">മുഖവും തലച്ചോറും സ്കാൻ ചെയ്യുന്നു...</p>
     </div>
 
     <!-- റിസൾട്ട് / സർട്ടിഫിക്കറ്റ് -->
@@ -250,8 +287,8 @@
         <p style="color: #64748b; font-size: 0.9rem; margin-bottom: 5px;">ഈ സർട്ടിഫിക്കറ്റ് അഭിമാനപൂർവ്വം നൽകുന്നത്:</p>
         <div class="user-name" id="cert-name">സുഹൃത്ത്</div>
         
-        <!-- ഫ്രണ്ടിന്റെ ഫോട്ടോ -->
-        <img src="https://i.ibb.co/JFgTKPwf/image.jpg" onerror="this.src='https://ibb.co/JFgTKPwf';" alt="Victim Photo" class="victim-img" />
+        <!-- ഉപയോക്താവ് എടുത്ത സ്വന്തം സെൽഫി ഫോട്ടോ ഇവിടെ തെളിയും -->
+        <img id="final-photo" src="" alt="Victim Photo" class="victim-img" />
 
         <p style="font-weight: 700; color: #b91c1c; font-size: 1.05rem; margin-top: 10px;">
           "2026-ലെ ഏറ്റവും വലിയ മഹാ മണ്ടനായി ഇദ്ദേഹത്തെ തിരഞ്ഞെടുത്തിരിക്കുന്നു!" 🤣
@@ -272,6 +309,7 @@
 
   <script>
     let victimName = "സുഹൃത്ത്";
+    let userSelfieData = "";
     let isSwapped = false;
 
     function playBeep(freq, type, duration) {
@@ -289,10 +327,30 @@
       } catch (e) {}
     }
 
+    // സെൽഫി എടുക്കുമ്പോൾ അത് താൽക്കാലികമായി റീഡ് ചെയ്ത് സൂക്ഷിക്കുന്നു
+    function handleSelfie(event) {
+      const file = event.target.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+          userSelfieData = e.target.result;
+          const preview = document.getElementById('preview');
+          preview.src = userSelfieData;
+          preview.style.display = 'block';
+          document.getElementById('upload-hint').style.display = 'none';
+        };
+        reader.readAsDataURL(file);
+      }
+    }
+
     function startQuiz() {
       const nameInput = document.getElementById('username').value.trim();
       if (!nameInput) {
         alert("ദയവായി നിങ്ങളുടെ പേര് നൽകുക!");
+        return;
+      }
+      if (!userSelfieData) {
+        alert("AI സ്കാനിംഗിനായി ഒരു സെൽഫി കൂടി നൽകുക!");
         return;
       }
       victimName = nameInput;
@@ -310,7 +368,6 @@
       document.getElementById('step-' + stepNum).classList.add('active');
     }
 
-    // നോ (NO) നിക്കുമ്പോഴോ തൊടുമ്പോഴോ ബട്ടണുകൾ പരസ്പരം സ്ഥാനം മാറുന്നു!
     function swapButtons() {
       const container = document.getElementById('swap-group');
       const yesBtn = document.getElementById('btn-yes');
@@ -332,7 +389,7 @@
       showStep(4);
 
       const statuses = [
-        "തലച്ചോറ് സ്കാൻ ചെയ്യുന്നു...",
+        "മുഖവും തലച്ചോറും സ്കാൻ ചെയ്യുന്നു...",
         "Error 404: Brain Not Found! ❌",
         "റിസൾട്ട് തയ്യാറാക്കുന്നു..."
       ];
@@ -347,6 +404,7 @@
           clearInterval(interval);
           showStep(5);
           document.getElementById('cert-name').innerText = victimName;
+          document.getElementById('final-photo').src = userSelfieData;
           confetti({
             particleCount: 100,
             spread: 70,
@@ -357,7 +415,7 @@
     }
 
     function shareOnWhatsApp() {
-      const text = `ഡാ, ഈ AI ടെസ്റ്റിൽ നിന്റെ IQ എത്രയാണെന്ന് നോക്ക്! ദാ ലിങ്ക്: ${window.location.href}`;
+      const text = `ഡാ, ഈ AI ഫേസ് സ്കാനർ ടെസ്റ്റിൽ നിന്റെ IQ എത്രയാണെന്ന് നോക്ക്! ദാ ലിങ്ക്: ${window.location.href}`;
       window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(text)}`, '_blank');
     }
   </script>
